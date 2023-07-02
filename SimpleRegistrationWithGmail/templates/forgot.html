@@ -1,0 +1,25 @@
+
+
+<!-- forgot_password.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Forgot Password</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" action="{% url 'forgot_password' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" name="email" id="email" value="{{ data.email }}" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Reset Password</button>
+    </form>
+{% endblock %}
